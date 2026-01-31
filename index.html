@@ -120,6 +120,110 @@
     /* Bulma 一些区块有默认底色，这里也一起覆盖 */
     .hero, .section, .footer { background: #fefefe; }
   </style>
+  <style>
+  /* 0) 防止横向溢出导致手机自动缩放 */
+  .title-video{
+    width: 100vw;
+    max-width: 1600px;
+    margin: -1.2rem 0 1rem;
+  }
+  .title-video video{ width: 100%; height: auto; }
+
+  /* 1) 全局基础字号，保持 rem 体系稳定 */
+  html{
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* 2) 标题：用 clamp 做响应式字号 */
+  .publication-title{
+    font-size: clamp(1.9rem, 6.2vw, 3.25rem) !important;
+    line-height: 1.08;
+    word-break: keep-all;
+  }
+
+  /* 3) 作者区：手机上允许换行，字号自适应 */
+  .publication-authors{
+    font-size: clamp(1.0rem, 3.6vw, 1.35rem) !important;
+    line-height: 1.25;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 0.35rem;
+    row-gap: 0.2rem;
+  }
+  .publication-authors .author-block{
+    white-space: nowrap;
+  }
+
+  /* 4) affiliation 与 note：自适应 */
+  .affiliation{
+    font-size: clamp(0.98rem, 3.3vw, 1.25rem) !important;
+    line-height: 1.2;
+  }
+  .affiliation-note{
+    font-size: clamp(0.9rem, 3.0vw, 1.05rem) !important;
+    line-height: 1.2;
+  }
+
+  /* 5) 章节标题与正文：手机更舒服 */
+  .title.is-3{
+    font-size: clamp(1.35rem, 4.8vw, 2.0rem) !important;
+    line-height: 1.15;
+  }
+  .content{
+    font-size: clamp(1.0rem, 3.5vw, 1.12rem) !important;
+    line-height: 1.65;
+  }
+
+  /* 6) 视频元素：避免细缝与溢出 */
+  video{
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 7) 手机端额外收紧间距 */
+  @media (max-width: 768px){
+    .hero-body{ padding: 1.25rem 1rem; }
+  }
+</style>
+<style>
+  .button-container{
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .button-container a.button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px){
+    .button-container{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+  }
+</style>
+<style>
+  @media (max-width: 768px){
+    .button-container{
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      justify-content: center;
+      column-gap: 0.75rem;
+      row-gap: 0.75rem;
+    }
+  }
+</style>
 </head>
 <body onload="updateInTheWild();updateBimanual();">
 
@@ -127,7 +231,7 @@
   <div class="hero-body">
     <div class="container is-fullhd">
       <div class="columns is-centered">
-        <div class="column has-text-centered">
+        <div class="column has-text-centered" style="max-width:80vw;margin-left:auto;margin-right:auto;">
           <div class="title-video" aria-label="VPP-TC title loop">
             <video id="title-loop" autoplay muted loop playsinline poster="media/title-poster.jpg">
               <source src="media/videos/Title.mov" type="video/mp4">
@@ -136,34 +240,42 @@
             </video>
           </div>
           <h1 class="title is-1 publication-title">VPP-TC: Viability-Preserving<br>Passive Torque Control</h1>
-          <div class="is-size-3 publication-authors">
-            <span class="author-block">
-              <a target="_blank" href=".">Anonymous Author(s)</a>
-            </span>
+          <div class="is-size-4 publication-authors">
             <!-- <span class="author-block">
-              <a target="_blank" href="https://huangwl18.github.io/">Wenlong Huang</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a target="_blank" href="https://www.chenwangjeremy.net/">Chen Wang</a><sup>1*</sup>,
-            </span>
-            <span class="author-block">
-              <a target="_blank" href="https://yunzhuli.github.io/">Yunzhu Li</a><sup>2*</sup>,
-            </span>
-            <span class="author-block">
-              <a target="_blank" href="https://ai.stanford.edu/~zharu/">Ruohan Zhang</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a target="_blank" href="https://profiles.stanford.edu/fei-fei-li">Li Fei-Fei</a><sup>1</sup>
+              <a target="_blank" href=".">Anonymous Author(s)</a>
             </span> -->
+            <span class="author-block">
+              <a target="_blank" href="https://zizhe.io/">Zizhe Zhang</a><sup>*</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://www.seas.upenn.edu/~yicongw/">Yicong Wang</a><sup>*</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://scholar.google.com/citations?user=PKBNMoMAAAAJ&hl=en">Zhiquan Zhang</a>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://imtianyuli.com/">Tianyu Li</a>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://nbfigueroa.github.io/">Nadia Figueroa</a>
+            </span>
           </div>
-          <!-- <div class="is-size-5 affiliation">
-            <sup>1</sup>Stanford University,
-            <sup>2</sup>Columbia University
+          <div class="is-size-4 affiliation">
+            University of Pennsylvania
           </div>
           <br>
           <div class="affiliation-note">
             <sup>*</sup> indicates equal contributions
-          </div> -->
+          </div>
+          <br>
+          <div class="is-size-4 affiliation">
+            <em>IEEE International Conference on Robotics & Automation (ICRA)</em>, 2026
+          </div>
+          <br>
+          <div class="is-size-4 affiliation" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;">
+            <img src="media/figures/ICRA26-logo.webp" alt="ICRA logo" style="height:4em;width:auto;display:inline-block;">
+          </div>
+          <br>
           <div class="button-container">
             <a href="./static/VPP-TC.pdf" target="_blank" class="button"><i class="fa-light fa-file"></i>&emsp14;PDF</a>
             <a href="./cs.html" target="_blank" class="button"><i class="ai ai-arxiv"></i>&emsp14;arXiv</a>
@@ -178,38 +290,32 @@
 </section>
 
 <section class="hero teaser">
-  
-
-<div class="container is-max-widescreen">
-<div class="columns is-centered has-text-centered">
-  <div class="column is-four-fifths">
-    <h2 class="title is-3">Abstract</h2>
-    <div class="content has-text-justified">
-      <p>
-        Conventional passivity-based torque controllers for manipulators are typically unconstrained, which can lead to safety violations under external perturbations. In this paper, we employ viability theory to pre-compute safe sets in the state-space of joint positions and velocities. These viable sets, constructed via data-driven and analytical methods for self-collision avoidance, external object collision avoidance and joint-position and joint-velocity limits, provide constraints on joint accelerations and thus joint torques via the robot dynamics. A quadratic programming-based control framework enforces these constraints on a passive controller tracking a dynamical system, ensuring the robot states remain within the safe set in an infinite time horizon. We validate the proposed approach through simulations and hardware experiments on a 7-DoF Franka Emika manipulator. In comparison to a baseline constrained passive controller, our method operates at higher control-loop rates and yields smoother trajectories.
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="container is-max-widescreen">
   <div class="hero-body">
-    <div class="container">
-      <div class="columns is-vcentered  is-centered">
-        <video id="teaser" autoplay muted loop controls height="100%" width="100%">
-          <source src="media/videos/VPP-TC.mp4"
-                  type="video/mp4">
-        </video>
-        </br>
+    <div class="container is-max-widescreen" style="max-width:min(80vw, 1200px);margin:0 auto;">
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Conventional passivity-based torque controllers for manipulators are typically unconstrained, which can lead to safety violations under external perturbations. In this paper, we employ viability theory to pre-compute safe sets in the state-space of joint positions and velocities. These viable sets, constructed via data-driven and analytical methods for self-collision avoidance, external object collision avoidance and joint-position and joint-velocity limits, provide constraints on joint accelerations and thus joint torques via the robot dynamics. A quadratic programming-based control framework enforces these constraints on a passive controller tracking a dynamical system, ensuring the robot states remain within the safe set in an infinite time horizon. We validate the proposed approach through simulations and hardware experiments on a 7-DoF Franka Emika manipulator. In comparison to a baseline constrained passive controller, our method operates at higher control-loop rates and yields smoother trajectories.
+            </p>
+          </div>
+        </div>
       </div>
-      <br>
-      <!-- <h2 class="subtitle has-text-centered">
-      Large vision models and vision-language models can generate keypoint-based constraints, which can be optimized to achieve multi-stage, in-the-wild, bimanual, and reactive behaviors, without task-specific training or environment models.
-      </h2> -->
+
+      <div class="columns is-vcentered is-centered">
+        <div class="column">
+          <video id="teaser" autoplay muted loop controls width="100%"
+                 style="display:block;width:100%;height:auto;background:#000;border:0;outline:0;box-shadow:none;clip-path: inset(0 2px 0 0);">
+            <source src="media/videos/vdweb.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
-
+</section>
 <!-- <hr class="rounded">
 <div class="rows">
   <h2 class="title is-3">Walkthrough Video</h2>
