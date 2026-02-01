@@ -88,6 +88,9 @@ body {
     /* width: fit-content; */
     font-weight: bolder;
 }
+.publication-awards strong em{
+  color: #ff3860;
+}
 
 .publication-authors a {
    color: #000000 !important;
