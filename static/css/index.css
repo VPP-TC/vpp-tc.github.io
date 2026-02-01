@@ -56,7 +56,15 @@ body {
   object-fit: fit;
 }
 
-.publication-header .hero-body {
+.publication-authors {
+  line-height: 1.25; /* 统一整行行高 */
+}
+
+.publication-authors sup {
+  font-size: 0.75em;
+  vertical-align: baseline;   /* 不用 super */
+  display: inline-block;      /* 让 transform 生效 */
+  transform: translateY(-0.45em);
 }
 
 .publication-title {
@@ -69,13 +77,13 @@ body {
 
 .publication-venue {
     color: #555;
-    width: fit-content;
+    /* width: fit-content; */
     font-weight: bold;
 }
 
 .publication-awards {
-    color: #ff3860;
-    width: fit-content;
+    /* color: #ff3860; */
+    /* width: fit-content; */
     font-weight: bolder;
 }
 
@@ -250,7 +258,7 @@ body {
   display: inline-block;
   color: #828282;
   font-family: 'Google Sans', sans-serif;
-  font-size: 1.2em;
+  /* font-size: 1.2em; */
   /* padding-top: 0.5em; */
   padding-bottom: 0.8em;
   text-align: center;
